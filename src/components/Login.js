@@ -8,7 +8,7 @@ export function Login(){
         email:"",
         password:""
     });
-    const {login} = useAuth()
+    const {login, signGoogle} = useAuth()
     const navigate = useNavigate();
     const [error,setError] = useState();
     
@@ -27,14 +27,27 @@ export function Login(){
             setError(err.message)
         }
     }
+    const handleGoogle= async(e)=>{
+        e.preventDefault()
+        setError('')
+        try{
+            await signGoogle()
+            navigate("/")
+        }catch(err){
+            setError(err.message)
+        }
+
+    }
     return(
     <div>
         {error && <p>{error}</p>}
        <form onSubmit={handleSubmit}>
            <input type="email" name="email" placeholder="Ingrese su email" onChange={handleChange}/>
            <input type="password" name="password" placeholder="Ingrese su contraseña" onChange={handleChange}/>
+           <a href="/recoverpassword">Forgot password?</a>
            <button>Ingresar</button>
        </form> 
+           <button onClick={handleGoogle}>Ingresar con google</button>
     </div>
     )
 }
