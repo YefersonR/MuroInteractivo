@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../authContext";
+import { useAuth } from "../../authContext";
 
 export function RecoverPassword(){
     const [error,setError] = useState();
@@ -20,10 +20,11 @@ export function RecoverPassword(){
         }
     }
     return(
-    <div>
+    <div className="container">
         {error && <p>{error}</p>}
 
-       <form onSubmit={handlerecoverpassword}>
+       <form onSubmit={handlerecoverpassword} className="form reset">
+           <h1>Recuperar contraseña</h1>
            <input type="email" name="email" placeholder="Ingrese su email" onChange={handleChange}/>
            <button >Enviar</button>
        </form> 

@@ -1,7 +1,8 @@
 import { useState } from "react"
-import { useAuth } from "../authContext";
+import { useAuth } from "../../authContext";
 import { useNavigate } from "react-router-dom";
-
+import './Login.css'
+import google from '../../google.png'
 
 export function Login(){
     const [user, setUser] = useState({
@@ -39,15 +40,21 @@ export function Login(){
 
     }
     return(
-    <div>
+    <div className="container">
         {error && <p>{error}</p>}
-       <form onSubmit={handleSubmit}>
+       <form onSubmit={handleSubmit} className="form">
+           <h1>Ingresar</h1>
+           <div className="inputs">
            <input type="email" name="email" placeholder="Ingrese su email" onChange={handleChange}/>
            <input type="password" name="password" placeholder="Ingrese su contraseña" onChange={handleChange}/>
+           </div>
+           <div className="button">
            <a href="/recoverpassword">Forgot password?</a>
            <button>Ingresar</button>
+           <a href="/register">Registrate</a>
+           </div>
        </form> 
-           <button onClick={handleGoogle}>Ingresar con google</button>
+           <button onClick={handleGoogle} className="google"><img src={google} className="imggoogle" />Ingresar con google</button>
     </div>
     )
 }

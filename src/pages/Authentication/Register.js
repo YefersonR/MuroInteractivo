@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { useAuth } from "../authContext";
+import { useAuth } from "../../authContext";
 import { useNavigate } from "react-router-dom";
+import './Login.css'
 
 export  function Register(){
     const [user, setUser] = useState({
@@ -28,10 +29,11 @@ export  function Register(){
         }
     };
     return(
-    <div>
+    <div className="container">
         {error && <p>{error}</p>}
             
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form">
+            <h1>Registrarse</h1>
             <input name="email" placeholder="Email" onChange={handleChange}></input>
             <input name="password" placeholder="Password" onChange={handleChange}></input>
             <button >Register</button>
