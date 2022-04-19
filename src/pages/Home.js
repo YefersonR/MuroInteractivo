@@ -3,7 +3,7 @@ import { Publications } from "../components/Publications"
 import { Publicar } from "../components/Publicar"
 import { useState } from "react"
 import {db} from '../firebase-config'
-import { collection, onSnapshot, addDoc,doc,getDocs,setDoc, QuerySnapshot } from "firebase/firestore"; 
+import { collection, onSnapshot,query, orderBy,getDocs,setDoc, QuerySnapshot } from "firebase/firestore"; 
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import image from '../user.png'
@@ -27,8 +27,9 @@ export function Home(){
     }
 
     const getpubli=async()=>{
-         const query = collection(db, `publicaciones`)
-         const Snapshot = onSnapshot(query,(querySnapshot)=>{
+         const querySnapshots = collection(db, `publicaciones`)
+         const qery =query(querySnapshots, orderBy('creado',"desc"))
+         const Snapshot = onSnapshot(qery,(querySnapshot)=>{
             let publicaciones = [] 
             querySnapshot.forEach((doc)=>{
                 publicaciones.push({...doc.data()})

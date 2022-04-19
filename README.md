@@ -4,7 +4,7 @@
 ##### `npm start`
 ##### `npm firebase`
 ##### `npm install react-router-dom`
-
+### Para ejecutar el programa `npm start`
 # Funcionamiento
 ### Registrarse
  `http://localhost:3000/register`
