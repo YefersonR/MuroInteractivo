@@ -27,11 +27,15 @@ export function Home(){
     }
 
     const getpubli=async()=>{
-         const querySnapshot = collection(db, `publicaciones`);
-         const Snapshot = await getDocs(querySnapshot)
-         const result = Snapshot.docs.map(doc=> doc.data())
-         setPubli(result)
-
+         const query = collection(db, `publicaciones`)
+         const Snapshot = onSnapshot(query,(querySnapshot)=>{
+            let publicaciones = [] 
+            querySnapshot.forEach((doc)=>{
+                publicaciones.push({...doc.data()})
+            })
+            setPubli(publicaciones)
+         })
+         return Snapshot
     }
 
     useEffect(()=>{
