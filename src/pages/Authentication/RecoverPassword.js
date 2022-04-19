@@ -21,7 +21,7 @@ export function RecoverPassword(){
     }
     return(
     <div className="container">
-        {error && <p>{error}</p>}
+        {error && <p className="err">{error}</p>}
 
        <form onSubmit={handlerecoverpassword} className="form reset">
            <h1>Recuperar contraseña</h1>

@@ -4,20 +4,20 @@ import {Home} from './pages/Home';
 import {Register} from './pages/Authentication/Register';
 import {Login} from  './pages/Authentication/Login'
 import {AuthProvider} from './authContext'
-import { ProtectedRoute } from './ProtectedRoute';
 import {RecoverPassword} from './pages/Authentication/RecoverPassword'
+import {ProtectedRoute} from './ProtectedRoute'
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
       <Routes>
-        <Route path='/' element={
-        //<ProtectedRoute>
-          <Home />
-         // </ProtectedRoute>
-        }/>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/' element={
+        <ProtectedRoute>
+          <Home />
+          </ProtectedRoute>
+        }/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/recoverpassword' element={<RecoverPassword/>}/>
 

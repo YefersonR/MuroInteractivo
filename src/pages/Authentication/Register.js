@@ -30,13 +30,14 @@ export  function Register(){
     };
     return(
     <div className="container">
-        {error && <p>{error}</p>}
+        {error && <p className="err">{error}</p>}
             
         <form onSubmit={handleSubmit} className="form">
             <h1>Registrarse</h1>
             <input name="email" placeholder="Email" onChange={handleChange}></input>
-            <input name="password" placeholder="Password" onChange={handleChange}></input>
+            <input  type="password" name="password" placeholder="Password" onChange={handleChange}></input>
             <button >Register</button>
+            <a href="/login">Volver al login</a>
         </form>
     </div>
 

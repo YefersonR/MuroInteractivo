@@ -1,13 +1,12 @@
 import { useState } from "react"
-import { collection, onSnapshot, addDoc,getDocs } from "firebase/firestore"; 
+import { collection,addDoc,Timestamp } from "firebase/firestore"; 
 import {db} from '../firebase-config'
 import { useAuth } from "../authContext";
+import image from '../user.png'
+
 
 export function Publicar(){
-    const [publi,setPubli] = useState({
-        id:'',
-        publicacion:''
-    })
+    const [publi,setPubli] = useState('')
     const {user} = useAuth()
     const handleChange=({target})=>{
         setPubli(target.value)
@@ -15,11 +14,18 @@ export function Publicar(){
     const handleSubmit =async(e)=>{
         e.preventDefault();
         try{
+            if(publi!='')
+            {
 
-            await addDoc(collection(db,"publicaciones"),{
-                publicacion:publi
-            })
-            console.log('se envio')
+                await addDoc(collection(db, "publicaciones"), {
+                    nombre:user.displayName ? user.displayName: '',
+                    email:user.email,
+                    imagen:user.photoURL ? user.photoURL: image,
+                    creado:Timestamp.now().toDate().toString(),
+                    post:publi
+              });
+              setPubli('')
+            }
         }catch(err){
             console.log(err.message)
         }
@@ -30,10 +36,11 @@ export function Publicar(){
         <div>
         { user &&
         <form onSubmit={handleSubmit}>
-        <textarea type="textarea" placeholder="Que estas pensando?" onChange={handleChange}/>
+        <textarea type="textarea" value={publi} placeholder="Que estas pensando?" onChange={handleChange}/>
         <button className="post">Publicar</button>
         </form>
         }
         </div>
     )
 }
+
