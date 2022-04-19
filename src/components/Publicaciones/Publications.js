@@ -1,5 +1,5 @@
 import './Publicaciones.css'
-import { Post } from './Post'
+import { Post } from '../Post/Post'
 
 export function Publications({posts}){
 
@@ -8,7 +8,7 @@ export function Publications({posts}){
         <div className='containerpost'>
             {
                 posts.map((post)=>(
-                    <Post post={post}/>
+                    <Post key={post.creado} post={post}/>
                 ))
             }
         </div>

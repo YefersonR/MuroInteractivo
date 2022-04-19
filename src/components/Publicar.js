@@ -2,7 +2,7 @@ import { useState } from "react"
 import { collection,addDoc,Timestamp } from "firebase/firestore"; 
 import {db} from '../firebase-config'
 import { useAuth } from "../authContext";
-import image from '../user.png'
+import image from '../imgs/user.png'
 
 
 export function Publicar(){
@@ -14,7 +14,7 @@ export function Publicar(){
     const handleSubmit =async(e)=>{
         e.preventDefault();
         try{
-            if(publi!='')
+            if(publi!=='')
             {
 
                 await addDoc(collection(db, "publicaciones"), {
@@ -27,7 +27,7 @@ export function Publicar(){
               setPubli('')
             }
         }catch(err){
-            console.log(err.message)
+            alert(err.message)
         }
 
     }

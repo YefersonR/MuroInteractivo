@@ -5,7 +5,6 @@ import {Register} from './pages/Authentication/Register';
 import {Login} from  './pages/Authentication/Login'
 import {AuthProvider} from './authContext'
 import {RecoverPassword} from './pages/Authentication/RecoverPassword'
-import {ProtectedRoute} from './ProtectedRoute'
 
 function App() {
   return (
@@ -14,9 +13,7 @@ function App() {
       <Routes>
         <Route path='/login' element={<Login/>}/>
         <Route path='/' element={
-        <ProtectedRoute>
           <Home />
-          </ProtectedRoute>
         }/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/recoverpassword' element={<RecoverPassword/>}/>

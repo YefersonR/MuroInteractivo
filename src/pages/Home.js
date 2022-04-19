@@ -1,14 +1,12 @@
 import { useAuth } from "../authContext"
-import { Publications } from "../components/Publications"
+import { Publications } from "../components/Publicaciones/Publications"
 import { Publicar } from "../components/Publicar"
 import { useState } from "react"
 import {db} from '../firebase-config'
-import { collection, onSnapshot,query, orderBy,getDocs,setDoc, QuerySnapshot } from "firebase/firestore"; 
+import { collection, onSnapshot,query, orderBy,getDocs} from "firebase/firestore"; 
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import image from '../user.png'
-
-
+import image from '../imgs/user.png'
 import './Home.css'
 
 
@@ -27,22 +25,33 @@ export function Home(){
     }
 
     const getpubli=async()=>{
+        
          const querySnapshots = collection(db, `publicaciones`)
-         const qery =query(querySnapshots, orderBy('creado',"desc"))
-         const Snapshot = onSnapshot(qery,(querySnapshot)=>{
-            let publicaciones = [] 
-            querySnapshot.forEach((doc)=>{
-                publicaciones.push({...doc.data()})
+        if(user){
+
+            const qery =query(querySnapshots, orderBy('creado',"desc"))
+            const Snapshot = onSnapshot(qery,(querySnapshot)=>{
+                let publicaciones = [] 
+                querySnapshot.forEach((doc)=>{
+                    publicaciones.push({...doc.data()})
+                })
+                setPubli(publicaciones)
             })
-            setPubli(publicaciones)
-         })
-         return Snapshot
+            return Snapshot
+        }else{
+            const querySnapshot = collection(db, `publicaciones`);
+            const Snapshot = await getDocs(querySnapshot)
+            const result = Snapshot.docs.map(doc=> doc.data())
+            setPubli(result)
+            return Snapshot
+        }
+
     }
 
     useEffect(()=>{
         getpubli()
-    },[])
-    console.log(user)
+    })
+
     return (
     <div>
         <header>

@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { useAuth } from "../../authContext";
 import { useNavigate } from "react-router-dom";
+import google from '../../imgs/google.png'
 import './Login.css'
-import google from '../../google.png'
 
 export function Login(){
     const [user, setUser] = useState({
@@ -54,7 +54,7 @@ export function Login(){
            <a href="/register">Registrate</a>
            </div>
        </form> 
-           <button onClick={handleGoogle} className="google"><img src={google} className="imggoogle" />Ingresar con google</button>
+           <button onClick={handleGoogle} className="google"><img src={google} className="imggoogle" alt="google"/>Ingresar con google</button>
     </div>
     )
 }
