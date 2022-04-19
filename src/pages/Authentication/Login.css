@@ -88,6 +88,10 @@ body{
     margin: 10px auto;
     
 }
+.err{
+    color:#000;
+    margin: 5px;
+}
 .imggoogle{
     width: 30px;
     height: 30px;

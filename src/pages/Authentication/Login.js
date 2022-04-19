@@ -41,7 +41,7 @@ export function Login(){
     }
     return(
     <div className="container">
-        {error && <p>{error}</p>}
+        {error && <p className="err">{error}</p>}
        <form onSubmit={handleSubmit} className="form">
            <h1>Ingresar</h1>
            <div className="inputs">

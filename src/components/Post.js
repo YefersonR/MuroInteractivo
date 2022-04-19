@@ -1,11 +1,11 @@
 import './Post.css'
-import image from '../google.png'
+import image from '../user.png'
 
 export function Post({post}){
     return(
         <div className='individualpost'>
             <div className='user-post'>
-            <img src={image} alt="" />
+            <img className='img' src={post.imagen ? post.imagen: image} alt="" />
             { post.nombre ?
             <div className='user-data'>
                 <h2>{post.nombre}</h2>
@@ -16,8 +16,10 @@ export function Post({post}){
                 <h2>{post.email}</h2>
             </div>
             }
+            <p className='creado'>{post.creado}</p>
             </div>
-            <p className='content'>{post.publicacion}</p>
+
+            <p className='content'>{post.post}</p>
         </div>
     )
 }
